@@ -1,0 +1,10 @@
+/root/.step/
+**/.step/
+**/*.key
+**/*.pem
+**/*.crt
+/etc/letsencrypt/
+/etc/step-ca-password
+*.log
+.DS_Store
+
