@@ -45,7 +45,7 @@
 
 ## Схема взаимодействия
 
-Клиент (curl / браузер)
+```Клиент (curl / браузер)
         |
         | HTTPS
         v
@@ -54,6 +54,7 @@ NGINX (myhost.local)
         | ACME challenge
         v
 step-ca (ca.local)
+```
 
 ---
 
@@ -67,8 +68,9 @@ sudo nano /etc/hosts
 
 Добавить:
 
-192.168.64.10   ca.local
+```192.168.64.10   ca.local
 192.168.64.20   myhost.local
+```
 
 Проверка:
 
