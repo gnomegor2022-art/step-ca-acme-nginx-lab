@@ -1,10 +1,9 @@
-/root/.step/
-**/.step/
-**/*.key
-**/*.pem
-**/*.crt
+# Secrets / certs
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+.step/
 /etc/letsencrypt/
-/etc/step-ca-password
-*.log
-.DS_Store
 
