@@ -157,7 +157,9 @@ sudo certbot certonly \
 
 Сертификаты сохраняются в:
 
+```
 /etc/letsencrypt/live/myhost.local/
+```
 
 ---
 
@@ -165,7 +167,9 @@ sudo certbot certonly \
 
 Файл конфигурации:
 
+```
 /etc/nginx/sites-available/default
+```
 
 Пример конфигурации:
 
