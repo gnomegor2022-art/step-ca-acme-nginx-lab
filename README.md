@@ -77,8 +77,7 @@ ping -c1 ca.local
 ping -c1 myhost.local
 
 ---
-
-## Шаг 2 — Настройка step-ca
+# Шаг 2 — Настройка step-ca
 
 Проверка сервиса:
 
