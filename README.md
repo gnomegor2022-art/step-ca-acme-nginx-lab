@@ -45,7 +45,8 @@
 
 ## Схема взаимодействия
 
-```Клиент (curl / браузер)
+```
+Клиент (curl / браузер)
         |
         | HTTPS
         v
@@ -62,35 +63,40 @@ step-ca (ca.local)
 
 На обоих серверах:
 
-```bash
+```
 sudo nano /etc/hosts
 ```
 
 Добавить:
 
-```192.168.64.10   ca.local
+```
+192.168.64.10   ca.local
 192.168.64.20   myhost.local
 ```
 
 Проверка:
 
-```getent hosts ca.local
+```
+getent hosts ca.local
 getent hosts myhost.local
 ping -c1 ca.local
 ping -c1 myhost.local
 ```
+
 ---- 
 
 ## Шаг 2 — Настройка step-ca
 
 Проверка сервиса:
 
-```sudo systemctl status step-ca --no-pager
+```
+sudo systemctl status step-ca --no-pager
 ```
 
 Добавление ACME provisioner:
 
-```sudo step ca provisioner add acme \
+```
+sudo step ca provisioner add acme \
   --type ACME \
   --ca-config /root/.step/config/ca.json
 
@@ -99,7 +105,8 @@ sudo systemctl restart step-ca
 
 Проверка ACME endpoint:
 
-```curl -k https://ca.local/acme/acme/directory
+```
+curl -k https://ca.local/acme/acme/directory
 ```
 
 Если возвращается JSON — ACME работает корректно.
@@ -110,7 +117,8 @@ sudo systemctl restart step-ca
 
 На web сервере:
 
-```curl https://ca.local:443/roots.pem -o /tmp/roots.pem
+```
+curl https://ca.local:443/roots.pem -o /tmp/roots.pem
 
 sudo cp /tmp/roots.pem /usr/local/share/ca-certificates/stepca-root.crt
 sudo update-ca-certificates
@@ -118,7 +126,8 @@ sudo update-ca-certificates
 
 Проверка:
 
-```curl https://ca.local/acme/acme/directory
+```
+curl https://ca.local/acme/acme/directory
 ```
 
 Если нет ошибки SSL — доверие к Root CA настроено.
@@ -131,12 +140,14 @@ sudo update-ca-certificates
 
 Остановить nginx:
 
-```sudo systemctl stop nginx
+```
+sudo systemctl stop nginx
 ```
 
 Выпустить сертификат:
 
-```sudo certbot certonly \
+```
+sudo certbot certonly \
   --server https://ca.local/acme/acme/directory \
   --standalone \
   -d myhost.local \
@@ -158,7 +169,8 @@ sudo update-ca-certificates
 
 Пример конфигурации:
 
-```server {
+```
+server {
     listen 80;
     server_name myhost.local;
 
@@ -188,13 +200,15 @@ server {
 
 ## Шаг 6 — Проверка конфигурации:
 
-```sudo nginx -t
+```
+sudo nginx -t
 sudo systemctl start nginx
 ```
 
 Проверка HTTPS
 
-```curl https://myhost.local
+```
+curl https://myhost.local
 ```
 
 Если возвращается HTML-страница Nginx — HTTPS настроен корректно.
