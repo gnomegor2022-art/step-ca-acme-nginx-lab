@@ -76,7 +76,7 @@ getent hosts myhost.local
 ping -c1 ca.local
 ping -c1 myhost.local
 
-Настройка step-ca
+## Шаг 2 — Настройка step-ca
 
 Проверка сервиса:
 
@@ -95,7 +95,7 @@ sudo systemctl restart step-ca
 curl -k https://ca.local/acme/acme/directory
 Если возвращается JSON — ACME работает корректно.
 
-Добавление Root CA в доверенные
+## Шаг 3 — Добавление Root CA в доверенные
 
 На web сервере:
 
@@ -109,7 +109,7 @@ sudo update-ca-certificates
 curl https://ca.local/acme/acme/directory
 Если нет ошибки SSL — доверие к Root CA настроено.
 
-Выпуск сертификата через Certbot
+## Шаг 4 — Выпуск сертификата через Certbot
 
 Важно: Certbot в standalone режиме использует порт 80.
 
@@ -130,7 +130,7 @@ sudo certbot certonly \
 
 /etc/letsencrypt/live/myhost.local/
 
-Настройка Nginx
+## Шаг 5 — Настройка Nginx
 
 Файл конфигурации:
 
@@ -163,7 +163,7 @@ server {
     }
 }
 
-Проверка конфигурации:
+## Шаг 6 — Проверка конфигурации:
 
 sudo nginx -t
 sudo systemctl start nginx
